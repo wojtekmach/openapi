@@ -1,0 +1,6 @@
+[submodule "examples/github/rest-api-description"]
+	path = examples/github/rest-api-description
+	url = https://github.com/github/rest-api-description
+[submodule "examples/stripe/openapi"]
+	path = examples/stripe/openapi
+	url = https://github.com/stripe/openapi
