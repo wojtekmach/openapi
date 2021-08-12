@@ -1,20 +1,38 @@
 # OpenAPI
 
-An [OpenAPI](https://www.openapis.org) proof-of-concept implementation.
+A proof-of-concept for generating [OpenAPI](https://www.openapis.org) clients in Elixir.
 
 ```
 $ git clone --recursive git@github.com:wojtekmach/openapi.git
+```
 
+## GitHub example:
+
+```
 $ (cd openapi/examples/github && mix deps.get && iex -S mix)
+```
+
+```elixir
 iex> client = GitHub.new(token: System.fetch_env!("GITHUB_TOKEN"))
 iex> GitHub.users_get_authenticated(client)
 {:ok, %{status: 200, body: %{"login" => "alice", ...}, ...}}
+```
 
+See [`examples/github/lib/github.ex`](examples/github/lib/github.ex)
+
+## Stripe example:
+
+```
 $ (cd openapi/examples/stripe && mix deps.get && iex -S mix)
+```
+
+```elixir
 iex> client = Stripe.new(token: System.fetch_env!("STRIPE_TOKEN"))
 iex> Stripe.get_account(client)
 {:ok, %{status: 200, body: %{"display_name" => "ACME, Inc", ...}, ...}}
 ```
+
+See [`examples/stripe/lib/stripe.ex`](examples/stripe/lib/stripe.ex)
 
 ## License
 
