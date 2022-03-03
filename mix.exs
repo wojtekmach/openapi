@@ -24,7 +24,8 @@ defmodule OpenAPI.MixProject do
 
   defp deps do
     [
-      {:jason, "~> 1.0"}
+      {:jason, "~> 1.0"},
+      {:yaml_elixir, "~> 2.8"}
     ]
   end
 end

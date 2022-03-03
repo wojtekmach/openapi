@@ -3,7 +3,9 @@ defmodule OpenAPI do
     path = Keyword.fetch!(opts, :path)
     only = opts[:only]
 
-    map = path |> File.read!() |> Jason.decode!()
+    format = opts[:format] || :json
+
+    map = path |> File.read!() |> decode!(format)
 
     operations =
       for {path, map} <- map["paths"],
@@ -32,9 +34,18 @@ defmodule OpenAPI do
     }
   end
 
+  defp decode!(binary, :json), do: Jason.decode!(binary)
+
+  defp decode!(binary, :yml) do
+    binary
+    |> YamlElixir.read_from_string!()
+    |> Jason.encode!()
+    |> Jason.decode!()
+  end
+
   defmacro defopenapi_client(opts) do
     {path, _} = Code.eval_quoted(opts[:path])
-    api = OpenAPI.parse(path: path, only: opts[:only])
+    api = OpenAPI.parse(path: path, only: opts[:only], format: opts[:format])
 
     new =
       quote do

@@ -4,3 +4,7 @@
 [submodule "examples/stripe/openapi"]
 	path = examples/stripe/openapi
 	url = https://github.com/stripe/openapi
+[submodule "examples/lob/lob-openapi"]
+	path = examples/lob/lob-openapi
+	url = https://github.com/lob/lob-openapi.git
+	branch = main
